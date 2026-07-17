@@ -3,6 +3,11 @@ main = "src/index.ts"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 
+# generate generated/tools.ts before bundling — the directory is gitignored,
+# so fresh checkouts (CI) must run codegen or the worker fails to build
+[build]
+command = "bun run codegen"
+
 # kv namespace for oauth provider storage
 [[kv_namespaces]]
 binding = "OAUTH_KV"
